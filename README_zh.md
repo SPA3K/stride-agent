@@ -1,6 +1,10 @@
 # 125K Context Is All You Need
 
-> Coding agent 上下文管理策略。核心发现：**控制上下文内容比控制上下文大小更重要**。实现代码进入主 agent 的 context 本身就是一种污染——它锚定思维，让模型只会模仿而不会创新。
+**你的 coding agent 有 1M context window。这恰恰是问题所在，不是解决方案。**
+
+Coding agent 上下文管理策略。核心发现：**控制上下文内容比控制上下文大小更重要**。实现代码进入主 agent 的 context 本身就是一种污染——它锚定思维，让模型只会模仿而不会创新。
+
+**快 52%，少改 55% 行代码。主 agent 上下文恒定 ~50K token，不随任务数增长。**
 
 [English](README.md) | **中文**
 

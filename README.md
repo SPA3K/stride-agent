@@ -1,6 +1,10 @@
 # 125K Context Is All You Need
 
-> A context management strategy for coding agents. Core finding: **controlling what's in your context matters more than how much context you have.** Implementation code in the main agent's context acts as an anchor — it makes the model imitate rather than innovate.
+**Your coding agent has a 1M context window. That's the problem, not the solution.**
+
+A context management strategy for coding agents. Core finding: **controlling what's in your context matters more than how much context you have.** Implementation code in the main agent's context acts as an anchor — it makes the model imitate rather than innovate.
+
+**52% faster. 55% fewer lines changed. Main agent stays at ~50K tokens no matter how many tasks.**
 
 [English](README.md) | [中文](README_zh.md)
 
