@@ -8,6 +8,12 @@ Coding agent 上下文管理策略。核心发现：**控制上下文内容比�
 
 [English](README.md) | **中文**
 
+| **~50K 恒定主上下文** | **改动行数 -55%** | **耗时 -52%** | **轮次 -53%** | **MIT** | 双语 |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 任务再多也不涨 | mimo vs Traditional | SWE-bench Lite A/B | sonnet 轮次减半 | 开源 | EN/中文 |
+
+**目录**：[测试结果](#测试结果) · [快速开始](#快速开始) · [问题](#问题) · [方案](#方案) · [运行流程](#运行流程) · [约束](#约束) · [基准与可复现](#基准与可复现) · [文件结构](#文件结构) · [已知限制](#已知限制) · [适用场景](#适用场景) · [开源协议](#开源协议)
+
 ---
 
 ## 测试结果
@@ -59,7 +65,7 @@ mimo 有 1M context window，agent 可以把整个项目读进上下文。结果
 ### 安装
 
 ```bash
-git clone <repo-url> ~/.claude/skills/stride
+git clone https://github.com/SPA3K/stride-agent ~/.claude/skills/stride
 # 自动注册到项目配置
 echo -e '\n## Stride Mode\n\n当任务涉及多文件修改或复杂重构时，使用 Stride 模式：\n- 读取 ~/.claude/skills/stride/SKILL.md 并严格遵守其中的规则\n- 或在 prompt 前加 /stride 前缀' >> CLAUDE.md
 ```
@@ -224,6 +230,16 @@ Worker 间通过 reference file 传递知识。Plan Maintainer 只读 INDEX，�
 **Worker：** 不返回完整文件内容，不返回超过 500 token 的结果，不修改范围外的文件，不在摘要中描述具体实现方案。
 
 ---
+
+## 基准与可复现
+
+README 中每个数字都已转录进 [`benchmarks/raw_results.json`](benchmarks/raw_results.json)——汇总行、逐任务行、以及说明它们是什么的 meta：
+
+- **协议**：SWE-bench Lite 三任务子集（astropy-12907 / django-10914 / matplotlib-18869），同一 harness 下 Traditional vs Stride；墙钟耗时、轮次、`git diff --numstat` 文件/行数。
+- **诚实口径**：这是**单次 A/B 快照**，不是多种子统计。一处已知不一致标注在 `meta.scope_note`（mimo 汇总 284.0s vs 所列 3 任务均值 211.7s——汇总可能覆盖比分项更宽的运行范围）。
+- **复现**：harness 脚本是下一个发布项；在那之前，请把表格当作「协议已公开的原始观测」，而不是榜单成绩。
+
+> 可复现性是逐步逼近的承诺，不是布尔值——先公开数据与口径，脚本随后。
 
 ## 文件结构
 

@@ -8,6 +8,14 @@ A context management strategy for coding agents. Core finding: **controlling wha
 
 [English](README.md) | [中文](README_zh.md)
 
+| **~50K 恒定主上下文** | **改动行数 -55%** | **耗时 -52%** | **轮次 -53%** | **MIT** | 双语 |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 任务再多也不涨 | mimo vs Traditional | SWE-bench Lite A/B | sonnet 轮次减半 | 开源 | EN/中文 |
+
+> **中文一句话**：给编码 Agent 的上下文管理策略——主 agent 锁在 ~50K，探索与实现全部丢给隔离 Worker，只收 200 token 以内的问题级摘要。不是少给你上下文，是决策时少让你看见。
+
+**目录**：[Results](#results) · [Quick Start](#quick-start) · [Problem](#problem) · [Solution](#solution) · [Running Flow](#running-flow) · [Constraints](#constraints) · [Benchmarks & Reproducibility](#benchmarks--reproducibility) · [File Structure](#file-structure) · [Known Limitations](#known-limitations) · [Who is this for?](#who-is-this-for) · [License](#license)
+
 ---
 
 ## Results
@@ -59,7 +67,7 @@ mimo's 1M window lets the agent ingest the entire project. The result: the more 
 ### Install
 
 ```bash
-git clone <repo-url> ~/.claude/skills/stride
+git clone https://github.com/SPA3K/stride-agent ~/.claude/skills/stride
 # Auto-register in your project
 echo -e '\n## Stride Mode\n\nFor multi-file changes or complex refactors, use Stride mode:\n- Read ~/.claude/skills/stride/SKILL.md and follow its rules strictly\n- Or prefix your prompt with /stride' >> CLAUDE.md
 ```
@@ -233,6 +241,16 @@ Workers share knowledge via reference files. Plan Maintainer reads only the INDE
 **Workers:** Never return full file content. Never return >500 tokens. Never modify files outside task scope. Never describe specific implementation approaches in summaries.
 
 ---
+
+## Benchmarks & Reproducibility
+
+Every number in this README is transcribed into [`benchmarks/raw_results.json`](benchmarks/raw_results.json) — aggregates, per-task rows, and the meta that says what they are:
+
+- **Protocol**: SWE-bench Lite 3-task subset (astropy-12907 / django-10914 / matplotlib-18869), Traditional vs Stride under the same harness; wall time, turns, `git diff --numstat` file/line counts.
+- **Honest scope**: this is a **single-run A/B snapshot**, not multi-seed statistics. One known discrepancy is flagged in `meta.scope_note` (mimo-traditional aggregate 284.0s vs 211.7s mean of the 3 listed tasks — aggregates likely cover a wider run than the breakdown).
+- **Reproduce**: harness scripts are the next release; until then, treat the tables as raw observations with a published protocol, not as a benchmark leaderboard entry.
+
+> 可复现性是一个逐步逼近的承诺，不是一个布尔值——先公开数据与口径，脚本随后。
 
 ## File Structure
 

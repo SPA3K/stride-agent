@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "benchmark": "SWE-bench Lite subset",
+    "tasks": ["astropy-12907", "django-10914", "matplotlib-18869"],
+    "modes": ["traditional", "stride"],
+    "models": ["mimo-v2.5-pro", "claude-sonnet-4-6"],
+    "snapshot_date": "2026-06-18",
+    "metrics": ["wall_time_s", "turns", "files_changed", "lines_changed"],
+    "scope_note": "Single-run A/B snapshot, not multi-seed statistics. The aggregate rows for mimo traditional (284.0s) do not equal the mean of the 3 listed per-task rows (211.7s) — aggregates likely cover a wider run than the breakdown shows; scope will be confirmed when the harness scripts are released.",
+    "reproduce_status": "harness scripts pending; raw numbers first — see README 'Benchmarks & Reproducibility'"
+  },
+  "aggregates": [
+    {"model": "mimo-v2.5-pro", "mode": "traditional", "wall_time_s": 284.0, "turns": 16.2, "files_changed": 2.8, "lines_changed": 53},
+    {"model": "mimo-v2.5-pro", "mode": "stride", "wall_time_s": 136.5, "turns": 14.0, "files_changed": 1.7, "lines_changed": 24},
+    {"model": "claude-sonnet-4-6", "mode": "traditional", "wall_time_s": 95.6, "turns": 17.5, "files_changed": 1.0, "lines_changed": 22},
+    {"model": "claude-sonnet-4-6", "mode": "stride", "wall_time_s": 95.5, "turns": 8.3, "files_changed": 1.0, "lines_changed": 17}
+  ],
+  "per_task_mimo": [
+    {"task": "astropy-12907", "traditional": {"wall_time_s": 148, "turns": 5, "files_changed": 1, "lines_changed": 14}, "stride": {"wall_time_s": 124, "turns": 11, "files_changed": 1, "lines_changed": 14}},
+    {"task": "django-10914", "traditional": {"wall_time_s": 275, "turns": 25, "files_changed": 6, "lines_changed": 113}, "stride": {"wall_time_s": 209, "turns": 17, "files_changed": 3, "lines_changed": 40}},
+    {"task": "matplotlib-18869", "traditional": {"wall_time_s": 212, "turns": 20, "files_changed": 2, "lines_changed": 43}, "stride": {"wall_time_s": 77, "turns": 14, "files_changed": 1, "lines_changed": 18}}
+  ]
+}
