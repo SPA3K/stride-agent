@@ -1,0 +1,15 @@
+{
+  "name": "stride-agent",
+  "version": "0.1.0",
+  "description": "Stride — context management strategy for coding agents (plan-maintainer + isolated workers)",
+  "owner": { "name": "SPA3K" },
+  "plugins": [
+    {
+      "name": "stride",
+      "source": "./",
+      "version": "0.1.0",
+      "description": "Main agent stays at ~50K tokens; workers return <200-token problem-level summaries. 52% faster, 55% fewer lines (SWE-bench Lite A/B).",
+      "keywords": ["context-management", "coding-agent", "claude-code", "swe-bench"]
+    }
+  ]
+}

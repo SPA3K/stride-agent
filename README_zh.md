@@ -8,6 +8,8 @@ Coding agent 上下文管理策略。核心发现：**控制上下文内容比�
 
 [English](README.md) | **中文**
 
+[![Docs](https://github.com/SPA3K/stride-agent/actions/workflows/docs.yml/badge.svg)](https://github.com/SPA3K/stride-agent/actions/workflows/docs.yml)
+
 | **~50K 恒定主上下文** | **改动行数 -55%** | **耗时 -52%** | **轮次 -53%** | **MIT** | 双语 |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | 任务再多也不涨 | mimo vs Traditional | SWE-bench Lite A/B | sonnet 轮次减半 | 开源 | EN/中文 |
@@ -64,11 +66,28 @@ mimo 有 1M context window，agent 可以把整个项目读进上下文。结果
 
 ### 安装
 
+**方式 A · Claude Code 插件（推荐）：**
+
+```
+/plugin marketplace add SPA3K/stride-agent
+/plugin install stride@stride-agent
+```
+
+**方式 B · npm —— 一条命令，安装器自动拷贝技能并注册：**
+
+```bash
+npm install -g github:SPA3K/stride-agent && stride-install
+```
+
+**方式 C · git clone（手动）：**
+
 ```bash
 git clone https://github.com/SPA3K/stride-agent ~/.claude/skills/stride
 # 自动注册到项目配置
 echo -e '\n## Stride Mode\n\n当任务涉及多文件修改或复杂重构时，使用 Stride 模式：\n- 读取 ~/.claude/skills/stride/SKILL.md 并严格遵守其中的规则\n- 或在 prompt 前加 /stride 前缀' >> CLAUDE.md
 ```
+
+> `stride-install` 幂等：把 `SKILL.md` + `agents/` + `prompts/` 拷进 `~/.claude/skills/stride`，并保证 `CLAUDE.md` 里的 Stride Mode 块只追加一次。参数：`--dry-run` · `--target <目录>` · `--claude-md <文件>`；每次 push，CI 都会跑它的自检（`npm test`）。
 
 ### 使用
 

@@ -1,0 +1,9 @@
+{
+  "name": "stride",
+  "version": "0.1.0",
+  "description": "Context management for coding agents: plan-maintainer + isolated workers keep the main agent at ~50K tokens. 52% faster, 55% fewer lines changed (SWE-bench Lite A/B).",
+  "author": { "name": "SPA3K" },
+  "homepage": "https://github.com/SPA3K/stride-agent",
+  "keywords": ["context-management", "coding-agent", "claude-code", "swe-bench"],
+  "skills": ["./SKILL.md"]
+}

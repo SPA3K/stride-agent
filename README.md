@@ -8,6 +8,8 @@ A context management strategy for coding agents. Core finding: **controlling wha
 
 [English](README.md) | [中文](README_zh.md)
 
+[![Docs](https://github.com/SPA3K/stride-agent/actions/workflows/docs.yml/badge.svg)](https://github.com/SPA3K/stride-agent/actions/workflows/docs.yml)
+
 | **~50K 恒定主上下文** | **改动行数 -55%** | **耗时 -52%** | **轮次 -53%** | **MIT** | 双语 |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | 任务再多也不涨 | mimo vs Traditional | SWE-bench Lite A/B | sonnet 轮次减半 | 开源 | EN/中文 |
@@ -66,11 +68,28 @@ mimo's 1M window lets the agent ingest the entire project. The result: the more 
 
 ### Install
 
+**Option A · Claude Code plugin (recommended):**
+
+```
+/plugin marketplace add SPA3K/stride-agent
+/plugin install stride@stride-agent
+```
+
+**Option B · npm — one command, installer copies the skill and registers it:**
+
+```bash
+npm install -g github:SPA3K/stride-agent && stride-install
+```
+
+**Option C · git clone (manual):**
+
 ```bash
 git clone https://github.com/SPA3K/stride-agent ~/.claude/skills/stride
 # Auto-register in your project
 echo -e '\n## Stride Mode\n\nFor multi-file changes or complex refactors, use Stride mode:\n- Read ~/.claude/skills/stride/SKILL.md and follow its rules strictly\n- Or prefix your prompt with /stride' >> CLAUDE.md
 ```
+
+> `stride-install` is idempotent — it copies `SKILL.md` + `agents/` + `prompts/` into `~/.claude/skills/stride` and appends the Stride Mode block to `CLAUDE.md` exactly once. Flags: `--dry-run` · `--target <dir>` · `--claude-md <file>`; CI runs its selftest on every push (`npm test`).
 
 ### Use
 

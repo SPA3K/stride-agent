@@ -1,0 +1,37 @@
+{
+  "name": "stride-agent",
+  "version": "0.1.0",
+  "description": "Context management for coding agents: plan-maintainer + isolated workers keep the main agent at ~50K tokens (52% faster, 55% fewer lines, SWE-bench Lite A/B)",
+  "bin": {
+    "stride-install": "bin/stride-install.js"
+  },
+  "files": [
+    "bin/",
+    "SKILL.md",
+    "agents/",
+    "prompts/",
+    "LICENSE",
+    "README.md",
+    "README_zh.md"
+  ],
+  "scripts": {
+    "test": "node scripts/check-docs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SPA3K/stride-agent.git"
+  },
+  "keywords": [
+    "claude-code",
+    "context-management",
+    "coding-agent",
+    "ai-agent",
+    "swe-bench",
+    "skill"
+  ],
+  "author": "SPA3K",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
